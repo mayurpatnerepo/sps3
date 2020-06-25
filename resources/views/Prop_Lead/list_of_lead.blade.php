@@ -289,12 +289,15 @@ background-image: linear-gradient(to bottom, #9cbbc7 0%, #4CAF50 100%)!important
                 <input type="hidden" name="id" value="{{$Lead->id}}" id="delete_id">
                  
                  @can('isAdmin')
-                <button  title="Edit Enquiry!" class="btn btn-success editenquiry" name="edit" data-enquiry_id="{{$Lead->id}}"><i class="fas fa-edit"></i></button>
+                <button  title="Edit Lead!" class="btn btn-success editlead" name="edit" data-lead_id="{{$Lead->id}}"><i class="fas fa-edit"></i></button>
 
                 <button title="Delete Enquiry!" class="btn btn-danger deleteenquiry" data-enquiry_id="{{$Lead->id}}" name="delete"><i class="fas fa-trash-alt"></i></button>
                 @endcan
             
-                <button data-target="#follow_up_modal" data-toggle="modal" class="btn btn-info followenquiry" ><i class="fas fa-phone-square"></i></button>
+                <!--<button data-target="#follow_up_modal" data-toggle="modal" class="btn btn-info followenquiry" ><i class="fas fa-phone-square"></i></button>-->
+
+
+                 <button title="Create Follow up!"  data-leadtrueid="{{$Lead->id}}" onclick="set_follow_up(this);" class="btn btn-info followlead" name="FollowUp" data-nature1="{{$Lead->nature}}" data-follow_up_id="{{$Lead->id}}"><i class="fas fa-phone-square"></i></button>
 
                
 
@@ -489,6 +492,15 @@ background-image: linear-gradient(to bottom, #9cbbc7 0%, #4CAF50 100%)!important
         } );
     } );
 
+
+  $('button.editlead').click(function()
+        {
+          //alert("here");
+         var EnqId=$(this).attr("data-lead_id");
+      window.location.href="{{ url('/Prop_Lead') }}"+'/'+EnqId;
+        });
+
+
 function get_nature(e){
 
   console.log(e);
@@ -502,19 +514,19 @@ function get_nature(e){
   
 }
 
-/*function set_follow_up(e){
+function set_follow_up(e){
 
   console.log(e);
   var enq_id = e.getAttribute('data-follow_up_id');
-  var enq_prop = e.getAttribute('data-prop');
-  var nature1 = e.getAttribute('set_follow_up');
-  var enq_id = e.getAttribute('data-enqtrueid');
+  //var enq_prop = e.getAttribute('data-prop');
+  var nature1 = e.getAttribute('data-nature1');
+  var enq_id = e.getAttribute('data-leadtrueid');
   $('#follow_up_modal').modal('show');
   document.getElementById("nature_followup").value = nature1;
   document.getElementById("enq_prop").value = enq_prop;
   document.getElementById("enq_id").value = enq_id;
   
-}*/
+}
 
 $( "#nature2_change" ).click(function( event ) { 
              

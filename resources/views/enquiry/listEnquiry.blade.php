@@ -295,11 +295,14 @@ background-image: linear-gradient(to bottom, #9cbbc7 0%, #4CAF50 100%)!important
               <td>
                 <input type="hidden" name="id" value="{{$enquiry->id}}" id="delete_id">
                  @can('isAdmin')
+
                 <button  title="Edit Enquiry!" class="btn btn-success editenquiry" name="edit" data-enquiry_id="{{$enquiry->id}}"><i class="fas fa-edit"></i></button>
+
                 <button title="Delete Enquiry!" class="btn btn-danger deleteenquiry" data-enquiry_id="{{$enquiry->id}}" name="delete"><i class="fas fa-trash-alt"></i></button>
                 @endcan
 
                <button title="Create Follow up!" data-prop="{{$single->Product}}" data-enqtrueid="{{$enquiry->id}}" onclick="set_follow_up(this);" class="btn btn-info followenquiry" name="FollowUp" data-nature1="{{$enquiry->nature}}" data-follow_up_id="{{$enquiry->id}}"><i class="fas fa-phone-square"></i></button>
+
                <button title="Create Quotation!" class="btn btn-warning proposalenquiry" id="proposal" name="proposal" data-proposal_up_id="{{$enquiry->id}}"><i class="fas fa-people-carry"></i></button>
                
                
@@ -466,7 +469,7 @@ function get_nature(e){
 }
 
 function set_follow_up(e){
-debugger;
+
   console.log(e);
   var enq_id = e.getAttribute('data-follow_up_id');
   var enq_prop = e.getAttribute('data-prop');
@@ -541,9 +544,7 @@ $( "#follow_setter" ).click(function( event ) {
 // });
 
 $(document).ready(function() {
-
-
- var date = new Date();
+var date = new Date();
 
  
 
@@ -778,14 +779,7 @@ function First_edit(content)
   $('button.editenquiry').click(function()
         {
           //alert("here");
-         
-
-          debugger;
          var EnqId=$(this).attr("data-enquiry_id");
-         
-         
-         
-       
       window.location.href="{{ url('/createEnquiry') }}"+'/'+EnqId;
         });
 

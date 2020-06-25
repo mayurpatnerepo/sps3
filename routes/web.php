@@ -319,6 +319,7 @@ Route::get('/list_of_customer','Prop_CustomerController@display')->name('listcus
 
 //lead route**********
 Route::get('/Prop_Lead', 'Prop_LeadController@index')->name('addlead');
+Route::get('/Prop_Lead/{id}', 'Prop_LeadController@updateForm');
 Route::post('/add_lead/store','Prop_LeadController@store');
 Route::get('/list_of_lead','Prop_LeadController@display')->name('listlead');
 Route::post('dynamic_dependent/fetch','Prop_LeadController@fetch')->name('dynamicdependent.fetch');

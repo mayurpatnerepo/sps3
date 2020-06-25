@@ -89,6 +89,21 @@ class Prop_LeadController extends Controller
         return view('Prop_Lead/list_of_lead')->with('Lead',$Lead);
     }
     
+
+      public function updateForm(Request $request, $id)
+    {     
+       
+
+
+      $Lead=Lead::all();
+       $leadstatuses = MasterLeadStatus::all();
+      $leadsources = MasterLeadSource::all();
+      $leadreqtypes = MasterLeadReqType::all();
+      $propertycategories = MasterPropertyType::orderBy('property_category')->get()->groupBy('property_category');
+      
+        return view('Prop_Lead/add_lead',compact('Lead','leadstatuses','leadsources','leadreqtypes','propertycategories'))->with('id',$id);
+    }
+
     
     function fetch(Request $request)
     {
